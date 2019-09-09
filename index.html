@@ -17,10 +17,18 @@
 		//alert($("#codeInput").offset().top);
 	});
 
-	var code = "A2019010110123"
+	//var code = "A2019010110123"
 
 	function useCode(){
-		invoke("/getcode",code);
+		var code = $("#codeInput").val();
+		console.log(code);
+		if(code == ""){
+			var errorDom = $("#errorDom");
+			showError(errorDom, "请输入券码");
+		}
+
+		
+		invoke("/voucher/getcode",code);
 	}
 	
 
@@ -36,11 +44,11 @@
 			<br/>
 			<div>
 				<form class="form-horizontal" style="">
-					<div class="form-group">
+					<div class="form-group" style="margin-bottom:0;">
 						<label for="codeInput" class="control-label">券码</label> &nbsp;
 						<input style="width:150px;display:inline-block" type="text" class="form-control" id="codeInput" name="code" placeholder="">
 					</div>
-					<p class="bg-danger" style="color:red">错误提示</p>
+					<p id="errorDom" class="bg-danger" style="color:red;font-size:12px;margin:5px 0;visibility:hidden;">错误提示</p>
 					<button style="" class="btn btn-default orange-btn"  type="button" onclick="useCode();">兑换礼品</button>
 				</form>
 			</div>

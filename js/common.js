@@ -14,9 +14,14 @@ $.fn.serializeObject = function() {
     return o;  
 }
 
+function showError(dom,msg){
+    dom.css("visibility","visible");
+    dom.text(msg)
+}
 
-function invoke(path,param){
-    var serverUrl = "http://127.0.0.1";
+
+function invoke(path,param,callback){
+    var serverUrl = "http://127.0.0.1:8003";
     var url = serverUrl + path
     console.log("request url:%s, param:%s",url,param);
     $.ajax({ 
